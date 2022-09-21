@@ -21,7 +21,7 @@ public class Formation {
     }
 
     public int getCoef(String matiere) throws KeyInvalidExeption {
-        if (this.matiere.containsKey(matiere)){
+        if (!this.matiere.containsKey(matiere)){
             throw new KeyInvalidExeption();
         }
         else {

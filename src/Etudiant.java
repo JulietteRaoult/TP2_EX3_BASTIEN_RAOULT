@@ -1,7 +1,4 @@
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class Etudiant {
 
@@ -27,6 +24,8 @@ public class Etudiant {
             if(resultat.containsKey(matiere)){
                 resultat.get(matiere).add(note);
                 res=true;
+            }else{
+                resultat.put(matiere,new ArrayList<Integer>(note));
             }
         }
         return res;
