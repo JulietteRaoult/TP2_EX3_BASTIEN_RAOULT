@@ -20,10 +20,20 @@ public class Formation {
         this.matiere.put(matiere,coef);
     }
 
-    public void getCoef(String matiere){
-
-        this.matiere.get(matiere);
+    public int getCoef(String matiere) throws KeyInvalidExeption {
+        if (this.matiere.containsKey(matiere)){
+            throw new KeyInvalidExeption();
+        }
+        else {
+            return this.matiere.get(matiere);
+        }
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public Map<String, Integer> getMatiere() {
+        return matiere;
+    }
 }
