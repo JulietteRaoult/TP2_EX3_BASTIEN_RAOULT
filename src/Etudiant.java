@@ -61,4 +61,16 @@ public class Etudiant {
         return res;
     }
 
+
+    public Identite getIdentite() {
+        return identite;
+    }
+
+    public Formation getFormation() {
+        return formation;
+    }
+
+    public Map<String, List<Integer>> getResultat() {
+        return resultat;
+    }
 }
