@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+main -> Etudiant : calculerAvgGen()
+activate Etudiant
+
+participant "etudiant:Etudiant" as Etudiant
+participant "resultat:Map" as Map
+participant "form:Formation" as Form
+
+Etudiant -> Map : keySet()
+activate Map
+Map --> Etudiant : domRes : Tab
+deactivate Map
+
+participant "somMoy : int" as moy
+
+loop for(String v : domRes)
+
+Etudiant -> Etudiant : calculerAvgMat()
+Etudiant -->Etudiant : moyAct
+
+Etudiant -> Form : get(v)
+activate Form
+Form --> Etudiant : coef
+deactivate Form
+
+Etudiant ->moy : somme(moyAct)
+activate moy
+moy -->Etudiant
+deactivate moy
+end
+
+Etudiant --> main : moyGen
+
+@enduml
