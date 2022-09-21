@@ -7,7 +7,7 @@ public class Etudiant {
     private Formation formation;
     private Map<String, List<Integer>> resultat;
 
-    public Etudiant(Identite id, Formation form, Map <String,Integer> res){
+    public Etudiant(Identite id, Formation form, Map <String,List<Integer>> res){
         this.identite=id;
         this.formation = form;
         this.resultat = res;
@@ -30,5 +30,24 @@ public class Etudiant {
         return res;
     }
 
-    
+
+    public float calculMoyenneMatiere(String matiere){
+        float res =-1;
+        int j = 0;
+        if(resultat.containsKey(matiere)){
+            for (int i = 0; i < resultat.get(matiere).size(); i++) {
+                res += resultat.get(matiere).get(i);
+                j++;
+            }
+            res = res/j;
+        }
+        return res;
+    }
+
+    public float calculMoyenneGenerale(){
+        float res;
+        
+    }
+
+
 }
