@@ -46,7 +46,7 @@ public class Etudiant {
 
     public float calculMoyenneGenerale(){
         float res;
-        
+
     }
 
 
