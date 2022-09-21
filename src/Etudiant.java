@@ -1,5 +1,7 @@
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Etudiant {
 
@@ -46,6 +48,11 @@ public class Etudiant {
 
     public float calculMoyenneGenerale(){
         float res;
+        float moyenne;
+        Set set = formation.getMatiere().keySet();
+        for(String s : set){
+            moyenne = calculMoyenneMatiere(s);
+        }
 
     }
 
