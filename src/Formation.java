@@ -36,4 +36,10 @@ public class Formation {
     public Map<String, Integer> getMatiere() {
         return matiere;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        Formation f = (Formation) obj;
+        return this.id == f.id;
+    }
 }
