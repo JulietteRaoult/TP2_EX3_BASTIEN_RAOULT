@@ -21,7 +21,7 @@ public class Formation {
     }
 
     public void getCoef(String matiere){
-        
+
         this.matiere.get(matiere);
     }
 
