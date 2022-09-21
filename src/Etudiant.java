@@ -1,5 +1,7 @@
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Etudiant {
 
@@ -32,7 +34,7 @@ public class Etudiant {
 
 
     public float calculMoyenneMatiere(String matiere){
-        float res =-1;
+        float res =0;
         int j = 0;
         if(resultat.containsKey(matiere)){
             for (int i = 0; i < resultat.get(matiere).size(); i++) {
@@ -44,10 +46,20 @@ public class Etudiant {
         return res;
     }
 
-    public float calculMoyenneGenerale(){
-        float res;
-        
+    public float calculMoyenneGenerale() throws KeyInvalidExeption {
+        float res = 0;
+        float moyenne;
+        int coeff;
+        int nbcoeff = 0;
+        Set<String> set = formation.getMatiere().keySet();
+        for(String s : set){
+            moyenne = calculMoyenneMatiere(s);
+            coeff = formation.getCoef(s);
+            moyenne = moyenne *coeff;
+            nbcoeff += coeff;
+            res += moyenne;
+        }
+        return res;
     }
-
 
 }
