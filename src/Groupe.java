@@ -18,4 +18,8 @@ public class Groupe {
         }
         return res;
     }
+
+    public void supprimerEtudiant(Etudiant etudiant){
+        etudiants.remove(etudiant);
+    }
 }
