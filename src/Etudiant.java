@@ -40,32 +40,40 @@ public class Etudiant {
     }
 
 
+
     /**
      * methode qui calcul la moyenne d'un etudiant dans un matiere donnee
      * @param matiere dans laquelle on calcule la moyenne
      * @return  la moyenne de l'etudiant dans la matiere donnee
      */
-    public float calculMoyenneMatiere(String matiere){
+        public float calculMoyenneMatiere(String matiere) throws KeyInvalidExeption {
+
         float res =0;
         int j = 0;
-        if(resultat.containsKey(matiere)){
+        if(!resultat.containsKey(matiere)){
+            throw new KeyInvalidExeption();
+        }
+        else {
             for (int i = 0; i < resultat.get(matiere).size(); i++) {
                 res += resultat.get(matiere).get(i);
                 j++;
             }
             res = res/j;
         }
+
         return res;
     }
+
 
     /**
      * methode qui calcul la moyenne generale d'un etudiant
      * @return  moyenne generale de l'etudiant
      * @throws KeyInvalidExeption
      */
-    public float calculMoyenneGenerale() throws KeyInvalidExeption {
-        float res = 0;
-        float moyenne;
+    public double calculMoyenneGenerale() throws KeyInvalidExeption {
+        double res = 0;
+        double moyenne;
+
         int coeff;
         int nbcoeff = 0;
         Set<String> set = formation.getMatiere().keySet();
@@ -76,7 +84,7 @@ public class Etudiant {
             nbcoeff += coeff;
             res += moyenne;
         }
-        return res;
+        return res/nbcoeff;
     }
 
 
