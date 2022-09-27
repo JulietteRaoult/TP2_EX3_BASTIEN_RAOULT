@@ -31,4 +31,12 @@ public class Groupe {
             throw new EtudiantNotFoundException();
         }
     }
+
+    public ArrayList<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public Formation getFormation() {
+        return formation;
+    }
 }
