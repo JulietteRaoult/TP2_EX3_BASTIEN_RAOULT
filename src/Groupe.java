@@ -5,6 +5,11 @@ public class Groupe {
     private ArrayList<Etudiant> etudiants;  // liste d'etudiants
     private Formation formation;            // formation a laquelle ils participent
 
+    public Groupe(ArrayList<Etudiant> etudiants, Formation formation) {
+        this.etudiants = etudiants;
+        this.formation = formation;
+    }
+
     /**
      * methode qui ajoute un etudiant a la liste d'etudiants
      * @param etudiant  etudiant a ajouter
