@@ -2,9 +2,17 @@ import java.util.*;
 
 public class Etudiant {
 
-    private Identite identite;
-    private Formation formation;
-    private Map<String, List<Integer>> resultat;
+
+    private Identite identite;              // identite de l'etudiant
+    private Formation formation;                    // formation de l'etudiant
+    private Map<String, List<Integer>> resultat;            // Table resultat d'un etudiant, qui associe une matière avec sa liste de notes
+
+    /**
+     * constructeur d'un etudiant
+     * @param id    id de l'etudiant
+     * @param form  formation de l'eutidant
+     * @param res   resultat de l'etudiant
+     */
 
     public Etudiant(Identite id, Formation form, Map <String,List<Integer>> res){
         this.identite=id;
@@ -14,9 +22,9 @@ public class Etudiant {
 
     /**
      * methode qui ajoute une note
-     * @param matiere
-     * @param note
-     * @return
+     * @param matiere   matiere a laquelle on ajoute la note
+     * @param note      note a ajouter dans la matiere
+     * @return  true si ajoute, false sinon
      */
     public boolean ajouterNote(String matiere, int note){
         boolean res = false;
@@ -32,6 +40,11 @@ public class Etudiant {
     }
 
 
+    /**
+     * methode qui calcul la moyenne d'un etudiant dans un matiere donnee
+     * @param matiere dans laquelle on calcule la moyenne
+     * @return  la moyenne de l'etudiant dans la matiere donnee
+     */
     public float calculMoyenneMatiere(String matiere){
         float res =0;
         int j = 0;
@@ -45,6 +58,11 @@ public class Etudiant {
         return res;
     }
 
+    /**
+     * methode qui calcul la moyenne generale d'un etudiant
+     * @return  moyenne generale de l'etudiant
+     * @throws KeyInvalidExeption
+     */
     public float calculMoyenneGenerale() throws KeyInvalidExeption {
         float res = 0;
         float moyenne;
@@ -60,6 +78,7 @@ public class Etudiant {
         }
         return res;
     }
+
 
 
     public Identite getIdentite() {
