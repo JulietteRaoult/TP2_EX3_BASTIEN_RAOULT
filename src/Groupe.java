@@ -24,7 +24,11 @@ public class Groupe {
         return res;
     }
 
-    public void supprimerEtudiant(Etudiant etudiant){
-        etudiants.remove(etudiant);
+    public void supprimerEtudiant(Etudiant etudiant) throws EtudiantNotFoundException {
+        if(etudiants.contains(etudiant)) {
+            etudiants.remove(etudiant);
+        }else{
+            throw new EtudiantNotFoundException();
+        }
     }
 }
