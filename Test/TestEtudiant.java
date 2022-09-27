@@ -30,6 +30,10 @@ public class TestEtudiant {
         result.put("Francais",noteF);
 
         etudiant = new Etudiant(id,form,result);
+
+        etudiant.ajouterNote("Francais",15);
+        etudiant.ajouterNote("Francais",16);
+        etudiant.ajouterNote("Anglais",10);
     }
 
     @Test
@@ -42,5 +46,9 @@ public class TestEtudiant {
 
 
     @Test
-    public void Test_CalculeMoyenneGeneral()
+    public void Test_CalculeMoyenneGeneral() throws KeyInvalidExeption {
+
+        double avg = etudiant.calculMoyenneGenerale();
+        Assertions.assertEquals(12.75,avg);
+    }
 }
