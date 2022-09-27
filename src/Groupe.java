@@ -12,7 +12,7 @@ public class Groupe {
      */
     public boolean ajouterEtudiant(Etudiant etudiant){
         boolean res =false;
-        if(etudiant.equals(this.formation)){
+        if(etudiant.getFormation().equals(this.formation)){
             etudiants.add(etudiant);
             res = true;
         }
