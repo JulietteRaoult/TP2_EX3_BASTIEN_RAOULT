@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.DisabledForJreRange;
-
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,8 +35,7 @@ public class TestEtudiant {
 
     @Test
     public void Test_ajout(){
-        etudiant.ajouterNote("Francais",15);
-        etudiant.ajouterNote("Francais",16);
+        //test
         Assertions.assertEquals(15,etudiant.getResultat().get("Francais").get(0));
         Assertions.assertEquals(16,etudiant.getResultat().get("Francais").get(1));
     }
@@ -47,8 +43,13 @@ public class TestEtudiant {
 
     @Test
     public void Test_CalculeMoyenneGeneral() throws KeyInvalidExeption {
-
+        //methode
         double avg = etudiant.calculMoyenneGenerale();
-        Assertions.assertEquals(12.75,avg);
+        Assertions.assertEquals(35.5/3,avg);
+    }
+
+    @Test
+    public void Test_CalculeMoyenne_Exeption(){
+        Assertions.assertThrows(KeyInvalidExeption.class,()-> etudiant.calculMoyenneMatiere("math"));
     }
 }
