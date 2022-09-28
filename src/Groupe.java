@@ -24,12 +24,19 @@ public class Groupe {
         return res;
     }
 
+
     public void supprimerEtudiant(Etudiant etudiant) throws EtudiantNotFoundException {
         if(etudiants.contains(etudiant)) {
             etudiants.remove(etudiant);
         }else{
             throw new EtudiantNotFoundException();
         }
+    }
+
+
+
+    public void triAlpha(){
+
     }
 
     public ArrayList<Etudiant> getEtudiants() {
