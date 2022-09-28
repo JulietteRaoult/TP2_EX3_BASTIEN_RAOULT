@@ -5,6 +5,11 @@ public class Groupe {
     private ArrayList<Etudiant> etudiants;  // liste d'etudiants
     private Formation formation;            // formation a laquelle ils participent
 
+    public Groupe(ArrayList<Etudiant> etudiants, Formation formation) {
+        this.etudiants = etudiants;
+        this.formation = formation;
+    }
+
     /**
      * methode qui ajoute un etudiant a la liste d'etudiants
      * @param etudiant  etudiant a ajouter
@@ -38,12 +43,19 @@ public class Groupe {
     }
 
     public double calculerMoyenneGroupe() throws KeyInvalidExeption {
-        double moyenne=0;
-        int nbEtudiants=0;
-        for(Etudiant e : etudiants){
+        double moyenne = 0;
+        int nbEtudiants = 0;
+        for (Etudiant e : etudiants) {
             moyenne += e.calculMoyenneGenerale();
             nbEtudiants++;
         }
-        return moyenne/nbEtudiants;
+        return moyenne / nbEtudiants;
+    }
+    public ArrayList<Etudiant> getEtudiants() {
+        return etudiants;
+    }
+
+    public Formation getFormation() {
+        return formation;
     }
 }
