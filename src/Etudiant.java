@@ -87,7 +87,9 @@ public class Etudiant {
         return res/nbcoeff;
     }
 
-
+    ////////////////////////
+    //      GETTER        //
+    ////////////////////////
 
     public Identite getIdentite() {
         return identite;

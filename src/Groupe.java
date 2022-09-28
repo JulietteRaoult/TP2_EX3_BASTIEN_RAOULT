@@ -26,4 +26,24 @@ public class Groupe {
             throw new EtudiantNotFoundException();
         }
     }
+
+    public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption {
+        double moyenne=0;
+        int nbEtudiants = 0;
+        for(Etudiant e : etudiants){
+            moyenne += e.calculMoyenneMatiere(matiere);
+            nbEtudiants ++;
+        }
+        return moyenne/nbEtudiants;
+    }
+
+    public double calculerMoyenneGroupe() throws KeyInvalidExeption {
+        double moyenne=0;
+        int nbEtudiants=0;
+        for(Etudiant e : etudiants){
+            moyenne += e.calculMoyenneGenerale();
+            nbEtudiants++;
+        }
+        return moyenne/nbEtudiants;
+    }
 }
