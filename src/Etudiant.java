@@ -100,4 +100,9 @@ public class Etudiant {
     public Map<String, List<Integer>> getResultat() {
         return resultat;
     }
+
+    public int compareTo(Object object){
+        Etudiant et = (Etudiant)object;
+        return this.identite.getNom().compareTo(et.identite.getNom());
+    }
 }
