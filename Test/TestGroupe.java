@@ -9,6 +9,8 @@ import java.util.Map;
 
 public class TestGroupe {
     Etudiant etudiant;
+    Etudiant etudiant1;
+    Etudiant etudiant2;
     Formation formation;
     Groupe g;
 
@@ -20,7 +22,6 @@ public class TestGroupe {
 
         formation = new Formation(254, map);
 
-        Identite id = new Identite("BASTIEN", "Cedran", "125455225");
 
         Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();
         List<Integer> note =new ArrayList<Integer>();
@@ -28,7 +29,14 @@ public class TestGroupe {
         List<Integer> noteF =new ArrayList<Integer>();
         result.put("Francais",noteF);
 
+        Identite id = new Identite("BASTIEN", "Cedran", "125455225");
         etudiant = new Etudiant(id,formation,result);
+
+        Identite id1 = new Identite("TRAN", "Maëva", "125455245");
+        etudiant1 = new Etudiant(id1,formation,result);
+
+        Identite id2 = new Identite("RAOULT", "Juliette", "125455248");
+        etudiant2 = new Etudiant(id2,formation,result);
 
         g = new Groupe(new ArrayList<Etudiant>(),formation);
     }
@@ -55,6 +63,32 @@ public class TestGroupe {
     public void Test_supprimerEtudiant_Exeption(){
 
         Assertions.assertThrows(EtudiantNotFoundException.class,()->g.supprimerEtudiant(etudiant));
+    }
+
+    @Test
+    public void Test_triAlpha(){
+        g.ajouterEtudiant(etudiant);
+        g.ajouterEtudiant(etudiant1);
+        g.ajouterEtudiant(etudiant2);
+
+        g.triAlpha();
+
+        Assertions.assertEquals(etudiant,g.getEtudiants().get(0));
+        Assertions.assertEquals(etudiant2,g.getEtudiants().get(1));
+        Assertions.assertEquals(etudiant1,g.getEtudiants().get(2));
+    }
+
+    @Test
+    public void Test_triAntiAlpha(){
+        g.ajouterEtudiant(etudiant);
+        g.ajouterEtudiant(etudiant1);
+        g.ajouterEtudiant(etudiant2);
+
+        g.triAntiAlpha();
+
+        Assertions.assertEquals(etudiant,g.getEtudiants().get(2));
+        Assertions.assertEquals(etudiant2,g.getEtudiants().get(1));
+        Assertions.assertEquals(etudiant1,g.getEtudiants().get(0));
     }
 
 }
