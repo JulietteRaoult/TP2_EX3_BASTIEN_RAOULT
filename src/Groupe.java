@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Groupe {
 
-    private ArrayList<Etudiant> etudiants;  // liste d'etudiants
+    private ArrayList<Etudiant> etudiants = new ArrayList<Etudiant>();  // liste d'etudiants
     private Formation formation;            // formation a laquelle ils participent
 
     public Groupe(ArrayList<Etudiant> etudiants, Formation formation) {
@@ -32,12 +32,40 @@ public class Groupe {
         }
     }
 
-    
+
     public ArrayList<Etudiant> getEtudiants() {
         return etudiants;
     }
 
     public Formation getFormation() {
         return formation;
+    }
+
+
+    public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption {
+        double moyenne=0;
+        int nbEtudiants = 0;
+        for(Etudiant e : etudiants){
+            if (e.calculMoyenneMatiere(matiere) > -1) {
+                moyenne += e.calculMoyenneMatiere(matiere);
+                nbEtudiants++;
+            }
+        }
+        return moyenne/nbEtudiants;
+
+    }
+
+    public double calculerMoyenneGroupe() throws KeyInvalidExeption {
+        double moyenne = 0;
+        int nbEtudiants = 0;
+        for (Etudiant e : etudiants) {
+            moyenne += e.calculMoyenneGenerale();
+            nbEtudiants++;
+        }
+        return moyenne / nbEtudiants;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
 }
