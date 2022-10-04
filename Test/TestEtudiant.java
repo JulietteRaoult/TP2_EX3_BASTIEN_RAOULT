@@ -45,7 +45,7 @@ public class TestEtudiant {
     public void Test_CalculeMoyenneGeneral() throws KeyInvalidExeption {
         //methode
         double avg = etudiant.calculMoyenneGenerale();
-        Assertions.assertEquals(35.5/3,avg);
+        Assertions.assertEquals(35.5/3,avg,0.01);
     }
 
     @Test
