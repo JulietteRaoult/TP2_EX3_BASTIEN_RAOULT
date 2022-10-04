@@ -16,6 +16,15 @@ public class Identite {
         this.NIP=NIP;
     }
 
+    public String getNom() {
+        return nom;
+    }
 
+    public String getPrenom() {
+        return prenom;
+    }
 
+    public String getNIP() {
+        return NIP;
+    }
 }

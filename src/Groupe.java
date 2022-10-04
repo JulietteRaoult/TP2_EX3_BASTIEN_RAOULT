@@ -1,11 +1,11 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class Groupe {
 
-    private ArrayList<Etudiant> etudiants;  // liste d'etudiants
-    private Formation formation;            // formation a laquelle ils participent
+    private List<Etudiant> etudiants;  // liste d'etudiants
+    private Formation formation;   // formation a laquelle ils participent
 
-    public Groupe(ArrayList<Etudiant> etudiants, Formation formation) {
+    public Groupe(List<Etudiant> etudiants, Formation formation) {
         this.etudiants = etudiants;
         this.formation = formation;
     }
@@ -24,6 +24,7 @@ public class Groupe {
         return res;
     }
 
+
     public void supprimerEtudiant(Etudiant etudiant) throws EtudiantNotFoundException {
         if(etudiants.contains(etudiant)) {
             etudiants.remove(etudiant);
@@ -32,7 +33,27 @@ public class Groupe {
         }
     }
 
-    public ArrayList<Etudiant> getEtudiants() {
+    public void triAlpha(){
+        this.etudiants.sort(new Comparator<Etudiant>() {
+            @Override
+            public int compare(Etudiant o1, Etudiant o2) {
+                return o1.getIdentite().getNom().compareTo(o2.getIdentite().getNom());
+            }
+        });
+
+    }
+
+
+    public void triAntiAlpha(){
+        this.etudiants.sort(new Comparator<Etudiant>() {
+            @Override
+            public int compare(Etudiant o1, Etudiant o2) {
+                return (o1.getIdentite().getNom().compareTo(o2.getIdentite().getNom()))*-1;
+            }
+        });
+    }
+
+    public List<Etudiant> getEtudiants() {
         return etudiants;
     }
 
