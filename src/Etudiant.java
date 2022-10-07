@@ -46,22 +46,21 @@ public class Etudiant {
      * @param matiere dans laquelle on calcule la moyenne
      * @return  la moyenne de l'etudiant dans la matiere donnee
      */
-        public float calculMoyenneMatiere(String matiere) throws KeyInvalidExeption {
-
-        float res =0;
-        int j = 0;
-        if(!resultat.containsKey(matiere)){
-            throw new KeyInvalidExeption();
-        }
-        else {
-            for (int i = 0; i < resultat.get(matiere).size(); i++) {
-                res += resultat.get(matiere).get(i);
-                j++;
+        public double calculMoyenneMatiere(String matiere) throws KeyInvalidExeption {
+            double res = 0.0;
+            int nb = 0;
+            if (resultat.containsKey(matiere))
+            {
+                for (int i = 0; i < resultat.get(matiere).size(); i++)
+                {
+                    res += resultat.get(matiere).get(i);
+                    nb++;
+                }
+                if (nb != 0) {
+                    return res/nb;
+                }
             }
-            res = res/j;
-        }
-
-        return res;
+            return -1;
     }
 
 
@@ -87,7 +86,9 @@ public class Etudiant {
         return res/nbcoeff;
     }
 
-
+    ////////////////////////
+    //      GETTER        //
+    ////////////////////////
 
     public Identite getIdentite() {
         return identite;
@@ -101,8 +102,20 @@ public class Etudiant {
         return resultat;
     }
 
-    public int compareTo(Object object){
-        Etudiant et = (Etudiant)object;
+
+    public int compareTo(Object object) {
+        Etudiant et = (Etudiant) object;
         return this.identite.getNom().compareTo(et.identite.getNom());
+
+
+    }
+        public String toString() {
+        String res = " ";
+        for (String n : resultat.keySet())
+        {
+            res += n+ " : "+ this.resultat.get(n)+ " \n";
+        }
+
+        return res;
     }
 }

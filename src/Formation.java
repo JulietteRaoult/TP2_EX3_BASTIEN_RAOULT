@@ -52,6 +52,16 @@ public class Formation {
         }
     }
 
+    /**
+     * methode equals qui compare deux formation est indique si elles sont egales
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        Formation f = (Formation) obj;
+        return this.id == f.id;
+    }
 
     public int getId() {
         return id;
@@ -61,9 +71,5 @@ public class Formation {
         return matiere;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        Formation f = (Formation) obj;
-        return this.id == f.id;
-    }
+
 }

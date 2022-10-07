@@ -33,6 +33,7 @@ public class Groupe {
         }
     }
 
+
     public void triAlpha(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
@@ -59,5 +60,33 @@ public class Groupe {
 
     public Formation getFormation() {
         return formation;
+    }
+
+
+    public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption {
+        double moyenne=0;
+        int nbEtudiants = 0;
+        for(Etudiant e : etudiants){
+            if (e.calculMoyenneMatiere(matiere) > -1) {
+                moyenne += e.calculMoyenneMatiere(matiere);
+                nbEtudiants++;
+            }
+        }
+        return moyenne/nbEtudiants;
+
+    }
+
+    public double calculerMoyenneGroupe() throws KeyInvalidExeption {
+        double moyenne = 0;
+        int nbEtudiants = 0;
+        for (Etudiant e : etudiants) {
+            moyenne += e.calculMoyenneGenerale();
+            nbEtudiants++;
+        }
+        return moyenne / nbEtudiants;
+    }
+
+    public void setFormation(Formation formation) {
+        this.formation = formation;
     }
 }
