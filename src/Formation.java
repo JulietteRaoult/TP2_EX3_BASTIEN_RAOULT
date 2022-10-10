@@ -1,6 +1,6 @@
-import com.sun.source.tree.LineMap;
-import jdk.jshell.execution.StreamingExecutionControl;
+import Exeption.KeyInvalidExeption;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Formation {
@@ -11,11 +11,10 @@ public class Formation {
     /**
      * constructeur d'une formation
      * @param id      id de la formation
-     * @param mat     table des matiere
      */
-    public Formation(int id, Map<String, Integer> mat){
+    public Formation(int id){
         this.id = id;
-        this.matiere = mat;
+        this.matiere = new HashMap<String, Integer>();
     }
 
     /**
@@ -63,9 +62,6 @@ public class Formation {
         return this.id == f.id;
     }
 
-    public int getId() {
-        return id;
-    }
 
     public Map<String, Integer> getMatiere() {
         return matiere;

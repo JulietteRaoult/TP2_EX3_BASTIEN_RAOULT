@@ -1,3 +1,4 @@
+import Exeption.KeyInvalidExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,14 +13,15 @@ public class TestEtudiant {
 
     @BeforeEach
     public void preparationTest(){
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("Anglais", 2);
-        map.put("Francais",1);
+        //creation de la formation
+        Formation form = new Formation(254);
+        form.getMatiere().put("Anglais", 2);
+        form.getMatiere().put("Francais",1);
 
-        Formation form = new Formation(254, map);
-
+        //ceration de l'identité d'un etudiant
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
 
+        //creation des resultat de l'etudiant
         Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();
         List<Integer> note =new ArrayList<Integer>();
         result.put("Anglais",note);
@@ -28,6 +30,7 @@ public class TestEtudiant {
 
         etudiant = new Etudiant(id,form,result);
 
+        //ajout des resultat de l'etudiant
         etudiant.ajouterNote("Francais",15);
         etudiant.ajouterNote("Francais",16);
         etudiant.ajouterNote("Anglais",10);

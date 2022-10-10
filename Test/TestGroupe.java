@@ -1,3 +1,4 @@
+import Exeption.EtudiantNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,11 +17,10 @@ public class TestGroupe {
 
     @BeforeEach
     public void preparerTest(){
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("Anglais", 2);
-        map.put("Francais",1);
 
-        formation = new Formation(254, map);
+        formation = new Formation(254);
+        formation.getMatiere().put("Anglais", 2);
+        formation.getMatiere().put("Francais",1);
 
 
         Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();

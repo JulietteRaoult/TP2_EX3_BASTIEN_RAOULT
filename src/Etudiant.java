@@ -1,3 +1,6 @@
+import Exeption.KeyInvalidExeption;
+import Exeption.NoNoteExeption;
+
 import java.util.*;
 
 public class Etudiant {
@@ -9,15 +12,22 @@ public class Etudiant {
 
     /**
      * constructeur d'un etudiant
+     *      cree la map resulta avec les matirer de la formation
      * @param id    id de l'etudiant
-     * @param form  formation de l'eutidant
-     * @param res   resultat de l'etudiant
+     * @param form  formation de l'etidiant
      */
 
     public Etudiant(Identite id, Formation form, Map <String,List<Integer>> res){
         this.identite=id;
         this.formation = form;
-        this.resultat = res;
+
+        //creation de la liste de resultat
+        this.resultat = new HashMap<String, List<Integer>>();
+        Set<String> s =  form.getMatiere().keySet();
+        for (String v : s){
+            this.resultat.put(v,new ArrayList<Integer>());
+        }
+
     }
 
     /**
@@ -46,21 +56,27 @@ public class Etudiant {
      * @param matiere dans laquelle on calcule la moyenne
      * @return  la moyenne de l'etudiant dans la matiere donnee
      */
-        public double calculMoyenneMatiere(String matiere) throws KeyInvalidExeption {
-            double res = 0.0;
-            int nb = 0;
-            if (resultat.containsKey(matiere))
+    public double calculMoyenneMatiere(String matiere) throws KeyInvalidExeption, NoNoteExeption {
+        double res = 0.0;
+        int nb = 0;
+        if (resultat.containsKey(matiere))
+        {
+            for (int i = 0; i < resultat.get(matiere).size(); i++)
             {
-                for (int i = 0; i < resultat.get(matiere).size(); i++)
-                {
-                    res += resultat.get(matiere).get(i);
-                    nb++;
-                }
-                if (nb != 0) {
-                    return res/nb;
-                }
+                res += resultat.get(matiere).get(i);
+                nb++;
             }
-            return -1;
+            if (nb != 0) {
+                return res/nb;
+            }
+            else
+            {
+                throw new NoNoteExeption();
+            }
+        }
+        else {
+            throw new KeyInvalidExeption();
+        }
     }
 
 
@@ -77,11 +93,17 @@ public class Etudiant {
         int nbcoeff = 0;
         Set<String> set = formation.getMatiere().keySet();
         for(String s : set){
-            moyenne = calculMoyenneMatiere(s);
-            coeff = formation.getCoef(s);
-            moyenne = moyenne *coeff;
-            nbcoeff += coeff;
-            res += moyenne;
+            try
+            {
+                moyenne = calculMoyenneMatiere(s);
+                coeff = formation.getCoef(s);
+                moyenne = moyenne *coeff;
+                nbcoeff += coeff;
+                res += moyenne;
+            }catch (NoNoteExeption n)
+            {
+                System.out.println("pas de note pour la matiere" + s);
+            }
         }
         return res/nbcoeff;
     }
@@ -103,12 +125,12 @@ public class Etudiant {
     }
 
 
-    public int compareTo(Object object) {
-        Etudiant et = (Etudiant) object;
-        return this.identite.getNom().compareTo(et.identite.getNom());
-
-
-    }
+//    public int compareTo(Object object) {
+//        Etudiant et = (Etudiant) object;
+//        return this.identite.getNom().compareTo(et.identite.getNom());
+//
+//
+//    }
         public String toString() {
         String res = " ";
         for (String n : resultat.keySet())

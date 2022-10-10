@@ -1,3 +1,4 @@
+import Exeption.KeyInvalidExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -5,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class TestCalculMoyenneGroupe {
@@ -13,11 +13,10 @@ public class TestCalculMoyenneGroupe {
     Groupe groupe;
     @BeforeEach
     public void preparation_test(){
-        Map<String, Integer> map = new HashMap<String, Integer>();
-        map.put("Anglais", 2);
-        map.put("Francais",1);
 
-        Formation form = new Formation(254, map);
+        Formation form = new Formation(254);
+        form.getMatiere().put("Anglais", 2);
+        form.getMatiere().put("Francais",1);
 
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
         Identite id1 = new Identite("RAOULT", "Juliette", "157795252");
@@ -58,7 +57,7 @@ public class TestCalculMoyenneGroupe {
         etudiant3.ajouterNote("Anglais",20);
 
 
-        groupe = new Groupe();
+        //groupe = new Groupe();
         groupe.setFormation(form);
         groupe.ajouterEtudiant(etudiant1);
         groupe.ajouterEtudiant(etudiant2);
