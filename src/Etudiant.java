@@ -72,11 +72,13 @@ public class Etudiant {
             else
             {
                 throw new NoNoteExeption();
+
             }
         }
         else {
             throw new KeyInvalidExeption();
         }
+
     }
 
 

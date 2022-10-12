@@ -1,4 +1,5 @@
 import Exeption.KeyInvalidExeption;
+import Exeption.ValueExeption;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +33,13 @@ public class Formation {
      * @param matiere   matiere a ajouter
      * @param coef      coef de la matiere
      */
-    public void ajouter(String matiere, int coef){
-        this.matiere.put(matiere,coef);
+    public void ajouter(String matiere, int coef) throws ValueExeption {
+        if (coef<0){
+            throw new ValueExeption();
+        }else {
+            this.matiere.put(matiere,coef);
+        }
+
     }
 
     /**

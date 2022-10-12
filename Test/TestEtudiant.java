@@ -1,4 +1,5 @@
 import Exeption.KeyInvalidExeption;
+import Exeption.ValueExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -52,7 +53,13 @@ public class TestEtudiant {
     }
 
     @Test
-    public void Test_CalculeMoyenne_Exeption(){
+    public void Test_CalculeMoyenne_keyInvalidExeption(){
         Assertions.assertThrows(KeyInvalidExeption.class,()-> etudiant.calculMoyenneMatiere("math"));
+    }
+
+    @Test
+    public void test_CalculeMoyenne_noteNonValide(){
+        Assertions.assertThrows(ValueExeption.class,()-> etudiant.ajouterNote("Anglais",-5));
+        Assertions.assertThrows(ValueExeption.class,()-> etudiant.ajouterNote("Anglais",25));
     }
 }

@@ -1,4 +1,5 @@
 import Exeption.KeyInvalidExeption;
+import Exeption.ValueExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -24,13 +25,13 @@ public class TestFormation {
     }
 
     @Test
-    public void test_ajouter(){
+    public void test_ajouter() throws ValueExeption {
         Map<String,Integer> map2 = new HashMap<String, Integer>();
         map2.put("SVT",2);
-
+        map2.put("Maths",3);
         Formation f = new Formation(1);
-        f.getMatiere().put("Maths",3);
-        f.getMatiere().put("SVT",2);
+
+        f.ajouter("SVT",2);
         f.ajouter("Maths",3);
         assertEquals(f.getMatiere(),map2);
     }
@@ -44,11 +45,17 @@ public class TestFormation {
     }
 
     @Test
-    public void test_exceptionCoeff(){
+    public void test_exceptionCoeff_matiere_non_existante(){
         Formation f = new Formation(1);
         f.getMatiere().put("SVT",2);
         assertThrows(KeyInvalidExeption.class, () ->
               f.getCoef("Français") );
+    }
+
+    @Test
+    public void test_exeption_ajout_Coeff_negatif(){
+        Formation f = new Formation(1);
+        assertThrows(ValueExeption.class,()->f.ajouter("francais",-2));
     }
 
     @Test
