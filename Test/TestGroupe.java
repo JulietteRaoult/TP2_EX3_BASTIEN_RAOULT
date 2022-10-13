@@ -1,5 +1,6 @@
 import Exeption.EtudiantNotFoundException;
 import Exeption.FormationNotCorresponding;
+import Exeption.KeyInvalidExeption;
 import Exeption.ValueExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,7 +19,7 @@ public class TestGroupe {
     Groupe g;
 
     @BeforeEach
-    public void preparerTest() throws ValueExeption {
+    public void preparerTest() throws ValueExeption, KeyInvalidExeption {
 
         formation = new Formation(254);
         formation.ajouter("Anglais", 2);
@@ -34,7 +35,7 @@ public class TestGroupe {
         Identite id2 = new Identite("RAOULT", "Juliette", "125455248");
         etudiant2 = new Etudiant(id2,formation);
 
-        g = new Groupe(new ArrayList<Etudiant>(),formation);
+        g = new Groupe(formation);
     }
 
     @Test
