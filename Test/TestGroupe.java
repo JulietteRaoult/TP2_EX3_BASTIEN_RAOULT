@@ -23,7 +23,9 @@ public class TestGroupe {
 
         formation = new Formation(254);
         formation.ajouter("Anglais", 2);
-        formation.ajouter("Francais",1);
+        formation.ajouter("Français",1);
+        formation.ajouter("Mathématiques",1);
+        formation.ajouter("SVT",2);
 
 
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
@@ -99,16 +101,51 @@ public class TestGroupe {
         Assertions.assertEquals(etudiant1,g.getEtudiants().get(0));
     }
 
+
     @Test
-    public void test_MoyenneMatiere_pasDeNote() throws FormationNotCorresponding, KeyInvalidExeption, EtudiantNotFoundException {
+    public void test_triParMerite() throws ValueExeption, KeyInvalidExeption, FormationNotCorresponding, EtudiantNotFoundException {
+        etudiant.ajouterNote("Français",20);
+        etudiant.ajouterNote("Anglais",20);
+        etudiant.ajouterNote("Mathématiques",20);
+        etudiant.ajouterNote("SVT",20);
+
+        etudiant1.ajouterNote("Français",15);
+        etudiant1.ajouterNote("Anglais",15);
+        etudiant1.ajouterNote("Mathématiques",15);
+        etudiant1.ajouterNote("SVT",15);
+
+        etudiant2.ajouterNote("Français",10);
+        etudiant2.ajouterNote("Anglais",10);
+        etudiant2.ajouterNote("Mathématiques",10);
+        etudiant2.ajouterNote("SVT",10);
+
+
         g.ajouterEtudiant(etudiant);
-        g.ajouterEtudiant(etudiant1);
         g.ajouterEtudiant(etudiant2);
+        g.ajouterEtudiant(etudiant1);
+
+
+        g.triParMerite();
+
+        Assertions.assertEquals(etudiant,g.getEtudiants().get(0));
+        Assertions.assertEquals(etudiant1,g.getEtudiants().get(1));
+        Assertions.assertEquals(etudiant2,g.getEtudiants().get(2));
 
         //test
-        Assertions.assertEquals(-1,g.calculerMoyenneGroupeMatiere("Anglais"));
+
     }
 
+
+        @Test
+        public void test_MoyenneMatiere_pasDeNote() throws FormationNotCorresponding, KeyInvalidExeption, EtudiantNotFoundException {
+            g.ajouterEtudiant(etudiant);
+            g.ajouterEtudiant(etudiant2);
+            g.ajouterEtudiant(etudiant1);
+
+            Assertions.assertEquals(-1,g.calculerMoyenneGroupeMatiere("Anglais"));
+
+
+    }
 
 
 }

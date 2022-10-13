@@ -99,7 +99,30 @@ public class Groupe {
         return res;
     }
 
+
+
+
+    public void triParMerite(){
+        this.etudiants.sort(new Comparator<Etudiant>() {
+            @Override
+            public int compare(Etudiant o1, Etudiant o2) {
+                int res = -5000;
+                double moyenneO1 = o1.calculMoyenneGenerale();
+                double moyenne02 = o2.calculMoyenneGenerale();
+                if (moyenneO1==moyenne02){
+                    res = 0;
+                }else if (moyenneO1>moyenne02){
+                    res = -1;
+                }else {
+                    res =1;
+                }
+                return res;
+            }
+        });
+    }
+
     public double calculerMoyenneGroupe() {
+
         double moyenne = 0;
         int nbEtudiants = 0;
         for (Etudiant e : etudiants) {
