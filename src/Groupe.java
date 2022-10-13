@@ -1,4 +1,5 @@
 import Exeption.EtudiantNotFoundException;
+import Exeption.FormationNotCorresponding;
 import Exeption.KeyInvalidExeption;
 import Exeption.NoNoteExeption;
 
@@ -19,11 +20,13 @@ public class Groupe {
      * @param etudiant  etudiant a ajouter
      * @return      true si l'etudiant a ete ajoute, false sinon
      */
-    public boolean ajouterEtudiant(Etudiant etudiant){
+    public boolean ajouterEtudiant(Etudiant etudiant) throws FormationNotCorresponding {
         boolean res =false;
         if(etudiant.getFormation().equals(this.formation)){
             etudiants.add(etudiant);
             res = true;
+        }else {
+            throw new FormationNotCorresponding();
         }
         return res;
     }

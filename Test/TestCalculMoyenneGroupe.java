@@ -1,4 +1,6 @@
+import Exeption.FormationNotCorresponding;
 import Exeption.KeyInvalidExeption;
+import Exeption.ValueExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,37 +14,19 @@ public class TestCalculMoyenneGroupe {
 
     Groupe groupe;
     @BeforeEach
-    public void preparation_test(){
+    public void preparation_test() throws ValueExeption, KeyInvalidExeption, FormationNotCorresponding {
 
         Formation form = new Formation(254);
-        form.getMatiere().put("Anglais", 2);
-        form.getMatiere().put("Francais",1);
+        form.ajouter("Anglais", 2);
+        form.ajouter("Francais",1);
 
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
         Identite id1 = new Identite("RAOULT", "Juliette", "157795252");
         Identite id2 = new Identite("PIERRE", "Titouan", "174632485");
 
-        Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();
-        List<Integer> note =new ArrayList<Integer>();
-        result.put("Anglais",note);
-        List<Integer> noteF =new ArrayList<Integer>();
-        result.put("Francais",noteF);
-
-        Map<String, List<Integer>> result2 = new HashMap<String, List<Integer>>();
-        List<Integer> note2 =new ArrayList<Integer>();
-        result2.put("Anglais",note2);
-        List<Integer> noteF2 =new ArrayList<Integer>();
-        result2.put("Francais",noteF2);
-
-        Map<String, List<Integer>> result3 = new HashMap<String, List<Integer>>();
-        List<Integer> note3 =new ArrayList<Integer>();
-        result3.put("Anglais",note3);
-        List<Integer> noteF3 =new ArrayList<Integer>();
-        result3.put("Francais",noteF3);
-
-        Etudiant etudiant1 = new Etudiant(id,form,result);
-        Etudiant etudiant2 = new Etudiant(id1,form,result2);
-        Etudiant etudiant3 = new Etudiant(id2,form,result3);
+        Etudiant etudiant1 = new Etudiant(id,form);
+        Etudiant etudiant2 = new Etudiant(id1,form);
+        Etudiant etudiant3 = new Etudiant(id2,form);
 
         etudiant1.ajouterNote("Francais",15);
         etudiant1.ajouterNote("Francais",16);

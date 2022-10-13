@@ -1,4 +1,6 @@
 import Exeption.EtudiantNotFoundException;
+import Exeption.FormationNotCorresponding;
+import Exeption.ValueExeption;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,38 +18,42 @@ public class TestGroupe {
     Groupe g;
 
     @BeforeEach
-    public void preparerTest(){
+    public void preparerTest() throws ValueExeption {
 
         formation = new Formation(254);
-        formation.getMatiere().put("Anglais", 2);
-        formation.getMatiere().put("Francais",1);
+        formation.ajouter("Anglais", 2);
+        formation.ajouter("Francais",1);
 
-
-        Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();
-        List<Integer> note =new ArrayList<Integer>();
-        result.put("Anglais",note);
-        List<Integer> noteF =new ArrayList<Integer>();
-        result.put("Francais",noteF);
 
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
-        etudiant = new Etudiant(id,formation,result);
+        etudiant = new Etudiant(id,formation);
 
         Identite id1 = new Identite("TRAN", "Maëva", "125455245");
-        etudiant1 = new Etudiant(id1,formation,result);
+        etudiant1 = new Etudiant(id1,formation);
 
         Identite id2 = new Identite("RAOULT", "Juliette", "125455248");
-        etudiant2 = new Etudiant(id2,formation,result);
+        etudiant2 = new Etudiant(id2,formation);
 
         g = new Groupe(new ArrayList<Etudiant>(),formation);
     }
 
     @Test
-    public void Test_AjouterEtudiant(){
+    public void Test_AjouterEtudiant() throws FormationNotCorresponding {
         //methode teste
         g.ajouterEtudiant(etudiant);
 
         //test
         Assertions.assertTrue(g.getEtudiants().contains(etudiant));
+    }
+
+    @Test
+    public void test_ajouterEtudiant_Exeption(){
+        //preparation
+        Formation f = new Formation(455);
+        Etudiant e = new Etudiant(new Identite("55","5555","fsdf555"),f);
+
+        //test
+        Assertions.assertThrows(FormationNotCorresponding.class,()->g.ajouterEtudiant(e));
     }
 
     @Test
@@ -66,7 +72,7 @@ public class TestGroupe {
     }
 
     @Test
-    public void Test_triAlpha(){
+    public void Test_triAlpha() throws FormationNotCorresponding {
         g.ajouterEtudiant(etudiant);
         g.ajouterEtudiant(etudiant1);
         g.ajouterEtudiant(etudiant2);
@@ -79,7 +85,7 @@ public class TestGroupe {
     }
 
     @Test
-    public void Test_triAntiAlpha(){
+    public void Test_triAntiAlpha() throws FormationNotCorresponding {
         g.ajouterEtudiant(etudiant);
         g.ajouterEtudiant(etudiant1);
         g.ajouterEtudiant(etudiant2);
