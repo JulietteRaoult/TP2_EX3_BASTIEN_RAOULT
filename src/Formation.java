@@ -22,10 +22,13 @@ public class Formation {
      * methode qui supprime un element de la table matiere
      * @param matiere matiere a supprimer
      */
-
-
-    public void supprimer(String matiere){
-        this.matiere.remove(matiere);
+    public void supprimer(String matiere) throws KeyInvalidExeption{
+        if(this.matiere.containsKey(matiere)){
+            this.matiere.remove(matiere);
+        }
+        else{
+            throw new KeyInvalidExeption();
+        }
     }
 
     /**
@@ -33,11 +36,13 @@ public class Formation {
      * @param matiere   matiere a ajouter
      * @param coef      coef de la matiere
      */
-    public void ajouter(String matiere, int coef) throws ValueExeption {
+    public void ajouter(String matiere, int coef) throws ValueExeption, KeyInvalidExeption {
         if (coef<0){
             throw new ValueExeption();
-        }else {
+        }else if(!this.matiere.containsKey(matiere)){
             this.matiere.put(matiere,coef);
+        }else{
+            throw new KeyInvalidExeption();
         }
 
     }

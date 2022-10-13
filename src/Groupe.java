@@ -10,8 +10,8 @@ public class Groupe {
     private List<Etudiant> etudiants;  // liste d'etudiants
     private Formation formation;   // formation a laquelle ils participent
 
-    public Groupe(List<Etudiant> etudiants, Formation formation) {
-        this.etudiants = etudiants;
+    public Groupe(Formation formation) {
+        this.etudiants = new ArrayList<Etudiant>();
         this.formation = formation;
     }
 
