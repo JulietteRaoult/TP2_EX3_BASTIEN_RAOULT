@@ -13,11 +13,13 @@ public class TestEtudiant {
 
 
     @BeforeEach
-    public void preparationTest(){
+    public void preparationTest() throws ValueExeption, KeyInvalidExeption {
         //creation de la formation
         Formation form = new Formation(254);
-        form.getMatiere().put("Anglais", 2);
-        form.getMatiere().put("Francais",1);
+        form.ajouter("Anglais", 2);
+        form.ajouter("Francais",1);
+        form.ajouter("Mathématiques",1);
+        form.ajouter("SVT",2);
 
         //ceration de l'identité d'un etudiant
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
@@ -28,6 +30,10 @@ public class TestEtudiant {
         result.put("Anglais",note);
         List<Integer> noteF =new ArrayList<Integer>();
         result.put("Francais",noteF);
+        List<Integer> noteM = new ArrayList<>();
+        result.put("Mathématiques",noteM);
+        List<Integer> noteS = new ArrayList<>();
+        result.put("SVT",noteS);
 
         etudiant = new Etudiant(id,form,result);
 
@@ -35,6 +41,8 @@ public class TestEtudiant {
         etudiant.ajouterNote("Francais",15);
         etudiant.ajouterNote("Francais",16);
         etudiant.ajouterNote("Anglais",10);
+        etudiant.ajouterNote("Mathématiques",15);
+        etudiant.ajouterNote("SVT",12);
     }
 
     @Test

@@ -38,7 +38,7 @@ public class TestGroupe {
         Identite id2 = new Identite("RAOULT", "Juliette", "125455248");
         etudiant2 = new Etudiant(id2,formation,result);
 
-        g = new Groupe(new ArrayList<Etudiant>(),formation);
+        g = new Groupe(formation);
     }
 
     @Test
@@ -53,6 +53,7 @@ public class TestGroupe {
     @Test
     public void Test_supprimerEtudiant() throws EtudiantNotFoundException {
         //methode teste
+        g.ajouterEtudiant(etudiant);
         g.supprimerEtudiant(etudiant);
 
         //test

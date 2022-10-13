@@ -14,18 +14,26 @@ public class TestFormation {
      * test de la methode supprimer
      */
     @Test
-    public void test_supprimer(){
+    public void test_supprimer() throws KeyInvalidExeption, ValueExeption {
         Formation f = new Formation(1);
-        f.getMatiere().put("Maths",3);
-        f.getMatiere().put("SVT",2);
+        f.ajouter("Maths",3);
+        f.ajouter("SVT",2);
         Map<String,Integer> map2 = new HashMap<String, Integer>();
         map2.put("SVT",2);
         f.supprimer("Maths");
         assertEquals(f.getMatiere(),map2);
     }
+    @Test
+    public void test_supprimerException() throws ValueExeption, KeyInvalidExeption {
+        Formation f = new Formation(2);
+        f.ajouter("SVT",2);
+        Map<String,Integer> map2 = new HashMap<>();
+
+        Assertions.assertThrows(KeyInvalidExeption.class,()-> f.supprimer("Maths"));
+    }
 
     @Test
-    public void test_ajouter() throws ValueExeption {
+    public void test_ajouter() throws ValueExeption, KeyInvalidExeption {
         Map<String,Integer> map2 = new HashMap<String, Integer>();
         map2.put("SVT",2);
         map2.put("Maths",3);
@@ -34,6 +42,16 @@ public class TestFormation {
         f.ajouter("SVT",2);
         f.ajouter("Maths",3);
         assertEquals(f.getMatiere(),map2);
+    }
+
+    @Test
+    public void test_ajouterException() throws ValueExeption, KeyInvalidExeption {
+        Formation f = new Formation(2);
+        f.ajouter("SVT",2);
+        f.ajouter("Maths",3);
+
+        Assertions.assertThrows(KeyInvalidExeption.class,()-> f.ajouter("Maths",3));
+
     }
 
     @Test
