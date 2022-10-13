@@ -55,17 +55,17 @@ public class TestFormation {
     }
 
     @Test
-    public void test_getCoeff() throws KeyInvalidExeption {
+    public void test_getCoeff() throws KeyInvalidExeption, ValueExeption {
         Formation f = new Formation(1);
-        f.getMatiere().put("SVT",2);
+        f.ajouter("SVT",2);
         int coeff= f.getCoef("SVT");
         assertEquals(coeff,2);
     }
 
     @Test
-    public void test_exceptionCoeff_matiere_non_existante(){
+    public void test_exceptionCoeff_matiere_non_existante() throws ValueExeption, KeyInvalidExeption {
         Formation f = new Formation(1);
-        f.getMatiere().put("SVT",2);
+        f.ajouter("SVT",2);
         assertThrows(KeyInvalidExeption.class, () ->
               f.getCoef("Français") );
     }
@@ -77,11 +77,11 @@ public class TestFormation {
     }
 
     @Test
-    public void test_equals(){
+    public void test_equals() throws ValueExeption, KeyInvalidExeption {
         Formation f = new Formation(1);
-        f.getMatiere().put("SVT",2);
+        f.ajouter("SVT",2);
         Formation f2 = new Formation(1);
-        f.getMatiere().put("SVT",2);
+        f.ajouter("SVT",2);
         assertTrue(f.equals(f2));
     }
 

@@ -100,7 +100,7 @@ public class TestGroupe {
     }
 
     @Test
-    public void test_MoyenneMatiere_pasDeNote() throws FormationNotCorresponding, KeyInvalidExeption {
+    public void test_MoyenneMatiere_pasDeNote() throws FormationNotCorresponding, KeyInvalidExeption, EtudiantNotFoundException {
         g.ajouterEtudiant(etudiant);
         g.ajouterEtudiant(etudiant1);
         g.ajouterEtudiant(etudiant2);

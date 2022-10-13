@@ -70,12 +70,15 @@ public class Groupe {
     }
 
 
-    public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption {
+
+    public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption, EtudiantNotFoundException {
         double res = -1;
         double moyenne=0;
         int nbEtudiants = 0;
         if (!formation.getMatiere().containsKey(matiere)){
             throw new KeyInvalidExeption();
+        }else if (this.etudiants.isEmpty()){
+            throw new EtudiantNotFoundException();
         }else
         {
             for(Etudiant e : etudiants){
