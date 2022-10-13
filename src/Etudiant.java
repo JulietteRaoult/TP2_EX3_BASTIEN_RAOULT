@@ -104,7 +104,7 @@ public class Etudiant {
                 res += moyenne;
             }catch (NoNoteExeption n)
             {
-                System.out.println("pas de note pour la matiere" + s);
+                System.out.println("Pas de note pour la matière " + s);
             }
         }
         return res/nbcoeff;

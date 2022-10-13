@@ -83,7 +83,7 @@ public class Groupe {
                     }
                 }catch (NoNoteExeption n)
                 {
-                    System.out.println(" l'etudiant "+e+" n'as pas de note pour la matiere" + matiere);
+                    System.out.println(" L'étudiant "+e+" n'a pas de note pour la matière" + " " + matiere);
                 }
 
             }
