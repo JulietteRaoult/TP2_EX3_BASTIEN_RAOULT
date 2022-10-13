@@ -1,6 +1,8 @@
 import Exeption.KeyInvalidExeption;
 import Exeption.NoNoteExeption;
+import Exeption.ValueExeption;
 
+import java.security.Key;
 import java.util.*;
 
 public class Etudiant {
@@ -17,7 +19,7 @@ public class Etudiant {
      * @param form  formation de l'etidiant
      */
 
-    public Etudiant(Identite id, Formation form, Map <String,List<Integer>> res){
+    public Etudiant(Identite id, Formation form){
         this.identite=id;
         this.formation = form;
 
@@ -36,15 +38,17 @@ public class Etudiant {
      * @param note      note a ajouter dans la matiere
      * @return  true si ajoute, false sinon
      */
-    public boolean ajouterNote(String matiere, int note){
+    public boolean ajouterNote(String matiere, int note) throws ValueExeption, KeyInvalidExeption {
         boolean res = false;
         if(note >= 0 && note <=20 ){
             if(resultat.containsKey(matiere)){
                 resultat.get(matiere).add(note);
                 res=true;
             }else{
-                resultat.put(matiere,new ArrayList<Integer>(note));
+                throw new KeyInvalidExeption();
             }
+        }else{
+            throw new ValueExeption();
         }
         return res;
     }
@@ -105,7 +109,9 @@ public class Etudiant {
             }catch (NoNoteExeption n)
             {
                 System.out.println("Pas de note pour la matière " + s);
-            }
+            }catch (KeyInvalidExeption k){
+                System.out.println("la matiere"+ s +"n'est as presente pour cette etudiant");
+           }
         }
         return res/nbcoeff;
     }
