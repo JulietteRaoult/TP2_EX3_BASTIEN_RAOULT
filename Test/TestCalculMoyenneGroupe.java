@@ -1,9 +1,9 @@
-import Exeption.FormationNotCorresponding;
-import Exeption.KeyInvalidExeption;
-import Exeption.ValueExeption;
+import Exeption.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,7 +57,7 @@ public class TestCalculMoyenneGroupe {
     }
 
     @Test
-    public void test_calculMoyenneMatiere() throws KeyInvalidExeption {
+    public void test_calculMoyenneMatiere() throws KeyInvalidExeption, EtudiantNotFoundException {
         double moyenneMatiere = groupe.calculerMoyenneGroupeMatiere("Anglais");
         Assertions.assertEquals(15,moyenneMatiere,0.01);
         Assertions.assertEquals(15.5, groupe.calculerMoyenneGroupeMatiere("Francais"),0.01);
@@ -70,6 +70,18 @@ public class TestCalculMoyenneGroupe {
     public void test_calculMoyenneGenerale() throws KeyInvalidExeption {
 
         Assertions.assertEquals(groupe.calculerMoyenneGroupe(),((71.5/6)+(85.5/6)+(99.5/6))/3,0.02);
+    }
+
+    // test is empty voir formation
+
+    @Test
+    public void test_calculMoyennePasEtudiants() throws ValueExeption, KeyInvalidExeption {
+
+        Formation f = new Formation(34);
+        f.ajouter("Math",2);
+        Groupe g = new Groupe(f);
+
+        Assertions.assertThrows(EtudiantNotFoundException.class,()->g.calculerMoyenneGroupeMatiere("Math"));
     }
 
 

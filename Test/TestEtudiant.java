@@ -21,20 +21,13 @@ public class TestEtudiant {
         form.ajouter("Francais",1);
         form.ajouter("Mathématiques",1);
         form.ajouter("SVT",2);
+        form.ajouter("EPS",1);
 
         //ceration de l'identité d'un etudiant
         Identite id = new Identite("BASTIEN", "Cedran", "125455225");
 
         //creation des resultat de l'etudiant
-        Map<String, List<Integer>> result = new HashMap<String, List<Integer>>();
-        List<Integer> note =new ArrayList<Integer>();
-        result.put("Anglais",note);
-        List<Integer> noteF =new ArrayList<Integer>();
-        result.put("Francais",noteF);
-        List<Integer> noteM = new ArrayList<>();
-        result.put("Mathématiques",noteM);
-        List<Integer> noteS = new ArrayList<>();
-        result.put("SVT",noteS);
+
 
         etudiant = new Etudiant(id,form);
 
@@ -58,12 +51,13 @@ public class TestEtudiant {
     public void Test_CalculeMoyenneGeneral() throws KeyInvalidExeption {
         //methode
         double avg = etudiant.calculMoyenneGenerale();
-        Assertions.assertEquals(35.5/3,avg,0.01);
+        Assertions.assertEquals(74.5/6,avg,0.01);
     }
 
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!! calcul moyenne sans note
     @Test
     public void test_calculeMoyenne_MatSansNote(){
-        Assertions.assertThrows(NoNoteExeption.class,()->etudiant.calculMoyenneMatiere("Math"));
+        Assertions.assertThrows(NoNoteExeption.class,()->etudiant.calculMoyenneMatiere("EPS"));
     }
 
     @Test
