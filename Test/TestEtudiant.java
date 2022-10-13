@@ -77,6 +77,13 @@ public class TestEtudiant {
         Assertions.assertThrows(ValueExeption.class,()-> etudiant.ajouterNote("Anglais",25));
     }
 
-//    @Test
-//    public void test_
+    @Test
+    public void test_ToString(){
+        Assertions.assertEquals("BASTIEN\n" +
+                "SVT : [12]\n" +
+                "Anglais : [10]\n" +
+                "Mathématiques : [15]\n" +
+                "Francais : [15, 16]"
+                ,etudiant.toString());
+    }
 }

@@ -71,6 +71,7 @@ public class Groupe {
 
 
     public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption {
+        double res = -1;
         double moyenne=0;
         int nbEtudiants = 0;
         if (!formation.getMatiere().containsKey(matiere)){
@@ -84,6 +85,7 @@ public class Groupe {
                         moyenne += e.calculMoyenneMatiere(matiere);
                         nbEtudiants++;
                     }
+                    res = moyenne/nbEtudiants;
                 }catch (NoNoteExeption n)
                 {
                     System.out.println(" L'étudiant "+e+" n'a pas de note pour la matière" + " " + matiere);
@@ -91,11 +93,10 @@ public class Groupe {
 
             }
         }
-        return moyenne/nbEtudiants;
-
+        return res;
     }
 
-    public double calculerMoyenneGroupe() throws KeyInvalidExeption {
+    public double calculerMoyenneGroupe() {
         double moyenne = 0;
         int nbEtudiants = 0;
         for (Etudiant e : etudiants) {
@@ -103,9 +104,5 @@ public class Groupe {
             nbEtudiants++;
         }
         return moyenne / nbEtudiants;
-    }
-
-    public void setFormation(Formation formation) {
-        this.formation = formation;
     }
 }

@@ -91,7 +91,7 @@ public class Etudiant {
      * @return  moyenne generale de l'etudiant
      * @throws KeyInvalidExeption
      */
-    public double calculMoyenneGenerale() throws KeyInvalidExeption {
+    public double calculMoyenneGenerale() {
         double res = 0;
         double moyenne;
 
@@ -140,10 +140,10 @@ public class Etudiant {
 //
 //    }
         public String toString() {
-        String res = " ";
+        String res = this.identite.getNom();
         for (String n : resultat.keySet())
         {
-            res += n+ " : "+ this.resultat.get(n)+ " \n";
+            res += "\n"+n+ " : "+ this.resultat.get(n);
         }
 
         return res;

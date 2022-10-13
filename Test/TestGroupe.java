@@ -99,4 +99,16 @@ public class TestGroupe {
         Assertions.assertEquals(etudiant1,g.getEtudiants().get(0));
     }
 
+    @Test
+    public void test_MoyenneMatiere_pasDeNote() throws FormationNotCorresponding, KeyInvalidExeption {
+        g.ajouterEtudiant(etudiant);
+        g.ajouterEtudiant(etudiant1);
+        g.ajouterEtudiant(etudiant2);
+
+        //test
+        Assertions.assertEquals(-1,g.calculerMoyenneGroupeMatiere("Anglais"));
+    }
+
+
+
 }
