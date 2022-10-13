@@ -23,8 +23,8 @@ public class TestGroupe {
 
         formation = new Formation(254);
         formation.ajouter("Anglais", 2);
-        formation.ajouter("Francais",1);
-        formation.ajouter("Mathémtiques",1);
+        formation.ajouter("Français",1);
+        formation.ajouter("Mathématiques",1);
         formation.ajouter("SVT",2);
 
 
@@ -122,6 +122,8 @@ public class TestGroupe {
         g.ajouterEtudiant(etudiant);
         g.ajouterEtudiant(etudiant1);
         g.ajouterEtudiant(etudiant2);
+
+        g.triParMerite();
 
         Assertions.assertEquals(etudiant,g.getEtudiants().get(0));
         Assertions.assertEquals(etudiant1,g.getEtudiants().get(1));
