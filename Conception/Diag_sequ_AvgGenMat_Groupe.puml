@@ -1,24 +1,25 @@
 @startuml
 'https://plantuml.com/sequence-diagram
 
+participant "etudiant:Etudiant" as Etudiant
+participant "matiere:Set" as Set
+participant "form:Formation" as Form
 
 main -> Etudiant : calculerAvgGen()
 activate Etudiant
 
-participant "etudiant:Etudiant" as Etudiant
-participant "resultat:Map" as Map
-participant "form:Formation" as Form
+
 
 Etudiant -> Form : getMatiere()
 activate Form
-Form -> Map : keySet()
-activate Map
-Map --> Form
-deactivate Map
-Form --> Etudiant : Set<String>
+Form --> Set : Set
 deactivate Form
 
-loop for(String v : Set)
+Etudiant -> Set : containsKey(matiere)
+activate Set
+Set --> Etudiant
+deactivate Set
+loop for(Etudiant e : this.etudiant)
 
 Etudiant -> Etudiant : calculerAvgMat()
 Etudiant -->Etudiant : moyAct
@@ -31,6 +32,6 @@ deactivate Form
 
 end
 
-Etudiant --> main : moyGen
+Etudiant --> main : moyGenMAt
 
 @enduml
