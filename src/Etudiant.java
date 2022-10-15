@@ -101,7 +101,7 @@ public class Etudiant {
         for(String s : set){
             try
             {
-                moyenne = calculMoyenneMatiere(s);
+                moyenne = this.calculMoyenneMatiere(s);
                 coeff = formation.getCoef(s);
                 moyenne = moyenne *coeff;
                 nbcoeff += coeff;
