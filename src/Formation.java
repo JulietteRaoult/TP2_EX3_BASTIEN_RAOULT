@@ -27,7 +27,7 @@ public class Formation {
             this.matiere.remove(matiere);
         }
         else{
-            throw new KeyInvalidExeption();
+            throw new KeyInvalidExeption();         // si la matiere n'existe pas
         }
     }
 
@@ -38,11 +38,11 @@ public class Formation {
      */
     public void ajouter(String matiere, int coef) throws ValueExeption, KeyInvalidExeption {
         if (coef<0){
-            throw new ValueExeption();
+            throw new ValueExeption();          // coef incorrect
         }else if(!this.matiere.containsKey(matiere)){
             this.matiere.put(matiere,coef);
         }else{
-            throw new KeyInvalidExeption();
+            throw new KeyInvalidExeption();         // si la matiere existe deja
         }
 
     }
@@ -54,7 +54,7 @@ public class Formation {
      * @throws KeyInvalidExeption
      */
     public int getCoef(String matiere) throws KeyInvalidExeption {
-        if (!this.matiere.containsKey(matiere)){
+        if (!this.matiere.containsKey(matiere)){            //si la matiere n'existe pas
             throw new KeyInvalidExeption();
         }
         else {
@@ -74,6 +74,10 @@ public class Formation {
     }
 
 
+    /**
+     * getter de la table matiere
+     * @return la table matiere
+     */
     public Map<String, Integer> getMatiere() {
         return matiere;
     }

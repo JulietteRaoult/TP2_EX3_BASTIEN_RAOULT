@@ -10,6 +10,10 @@ public class Groupe {
     private List<Etudiant> etudiants;  // liste d'etudiants
     private Formation formation;   // formation a laquelle ils participent
 
+    /**
+     * constructeur d'un groupe
+     * @param formation   formation en parametre
+     */
     public Groupe(Formation formation) {
         this.etudiants = new ArrayList<Etudiant>();
         this.formation = formation;
@@ -22,7 +26,7 @@ public class Groupe {
      */
     public boolean ajouterEtudiant(Etudiant etudiant) throws FormationNotCorresponding {
         boolean res =false;
-        if(etudiant.getFormation().equals(this.formation)){
+        if(etudiant.getFormation().equals(this.formation)){         // si l'etudiant a ajouter a bien la meme formation que le groupe
             etudiants.add(etudiant);
             res = true;
         }else {
@@ -32,15 +36,23 @@ public class Groupe {
     }
 
 
+    /**
+     * methode qui supprime un etudiant du groupe
+     * @param etudiant etudiant a supprimer
+     * @throws EtudiantNotFoundException    si l'etudiant n'existe pas dans le groupe
+     */
     public void supprimerEtudiant(Etudiant etudiant) throws EtudiantNotFoundException {
-        if(etudiants.contains(etudiant)) {
-            etudiants.remove(etudiant);
+        if(etudiants.contains(etudiant)) {          //si l'etudiant est present
+            etudiants.remove(etudiant);             // on l'enleve
         }else{
-            throw new EtudiantNotFoundException();
+            throw new EtudiantNotFoundException();      //sinon exception
         }
     }
 
 
+    /**
+     * methode qui trie les etudiants du groupe en fonction de leur nom de famille dans l'ordre alphabetique
+     */
     public void triAlpha(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
@@ -51,7 +63,9 @@ public class Groupe {
 
     }
 
-
+    /**
+     * methode qui trie les etudiants du groupe en fonction de leur nom de famille dans l'ordre inverse de l'alphabet
+     */
     public void triAntiAlpha(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
@@ -61,23 +75,38 @@ public class Groupe {
         });
     }
 
+    /**
+     * getter de la liste d'etudiants
+     * @return      la liste d'etudiants
+     */
     public List<Etudiant> getEtudiants() {
         return etudiants;
     }
 
+
+    /**
+     * getter de la formation du groupe
+     * @return la formation
+     */
     public Formation getFormation() {
         return formation;
     }
 
 
-
+    /**
+     * methode qui calcul la moyenne du groupe dans une matiere donnee
+     * @param matiere   matiere donnee
+     * @return  la moyenne du groupe dans cette matiere
+     * @throws KeyInvalidExeption
+     * @throws EtudiantNotFoundException
+     */
     public double  calculerMoyenneGroupeMatiere(String matiere) throws KeyInvalidExeption, EtudiantNotFoundException {
         double res = -1;
         double moyenne=0;
         int nbEtudiants = 0;
-        if (!formation.getMatiere().containsKey(matiere)){
+        if (!formation.getMatiere().containsKey(matiere)){          // si la matiere n'est pas presente dans la formation
             throw new KeyInvalidExeption();
-        }else if (this.etudiants.isEmpty()){
+        }else if (this.etudiants.isEmpty()){                    // si la liste d'etudiants est vide
             throw new EtudiantNotFoundException();
         }else
         {
@@ -100,8 +129,9 @@ public class Groupe {
     }
 
 
-
-
+    /**
+     * methode qui tri les etudiants d'un groupe en fonction de leur moyenne general, meilleur moyenne en premier
+     */
     public void triParMerite(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
@@ -121,6 +151,10 @@ public class Groupe {
         });
     }
 
+    /**
+     * methode qui calcul la moyenne general d'un groupe
+     * @return   moyenne general d'un groupe
+     */
     public double calculerMoyenneGroupe() {
 
         double moyenne = 0;

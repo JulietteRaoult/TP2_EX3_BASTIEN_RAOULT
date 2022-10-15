@@ -16,6 +16,12 @@ public class Identite {
         this.NIP=NIP;
     }
 
+
+    ////////////////////////
+    //      GETTER        //
+    ////////////////////////
+
+
     public String getNom() {
         return nom;
     }

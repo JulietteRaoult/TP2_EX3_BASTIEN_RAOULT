@@ -40,8 +40,8 @@ public class Etudiant {
      */
     public boolean ajouterNote(String matiere, int note) throws ValueExeption, KeyInvalidExeption {
         boolean res = false;
-        if(note >= 0 && note <=20 ){
-            if(resultat.containsKey(matiere)){
+        if(note >= 0 && note <=20 ){    //verification que la note est valide
+            if(resultat.containsKey(matiere)){      //verification que la matiere existe
                 resultat.get(matiere).add(note);
                 res=true;
             }else{
@@ -63,7 +63,7 @@ public class Etudiant {
     public double calculMoyenneMatiere(String matiere) throws KeyInvalidExeption, NoNoteExeption {
         double res = 0.0;
         int nb = 0;
-        if (resultat.containsKey(matiere))
+        if (resultat.containsKey(matiere))      //verification que la matiere existe
         {
             for (int i = 0; i < resultat.get(matiere).size(); i++)
             {
@@ -75,12 +75,12 @@ public class Etudiant {
             }
             else
             {
-                throw new NoNoteExeption();
+                throw new NoNoteExeption();             //si aucune note n'a ete trouve
 
             }
         }
         else {
-            throw new KeyInvalidExeption();
+            throw new KeyInvalidExeption();     // si la matiere n'existe pas
         }
 
     }
@@ -133,12 +133,6 @@ public class Etudiant {
     }
 
 
-//    public int compareTo(Object object) {
-//        Etudiant et = (Etudiant) object;
-//        return this.identite.getNom().compareTo(et.identite.getNom());
-//
-//
-//    }
         public String toString() {
         String res = this.identite.getNom();
         for (String n : resultat.keySet())

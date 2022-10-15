@@ -13,7 +13,18 @@ import java.util.Map;
 public class TestCalculMoyenneGroupe {
 
     Groupe groupe;
+
+    /**
+     * before each pour tout les tests,
+     * creation d'une formation avec 4 matieres,
+     * creation de 3 etudiants
+     * et ajout de notes au etudiants
+     * @throws ValueExeption
+     * @throws KeyInvalidExeption
+     * @throws FormationNotCorresponding
+     */
     @BeforeEach
+
     public void preparation_test() throws ValueExeption, KeyInvalidExeption, FormationNotCorresponding {
 
         Formation form = new Formation(254);
@@ -56,6 +67,12 @@ public class TestCalculMoyenneGroupe {
         groupe.ajouterEtudiant(etudiant3);
     }
 
+
+    /**
+     * test de la methode de calcul de la moyenne par matiere d'un groupe
+     * @throws KeyInvalidExeption
+     * @throws EtudiantNotFoundException
+     */
     @Test
     public void test_calculMoyenneMatiere() throws KeyInvalidExeption, EtudiantNotFoundException {
         double moyenneMatiere = groupe.calculerMoyenneGroupeMatiere("Anglais");
@@ -66,14 +83,22 @@ public class TestCalculMoyenneGroupe {
     }
 
 
+    /**
+     * test de la methode de calcul de moyenne general d'un groupe
+     * @throws KeyInvalidExeption
+     */
     @Test
     public void test_calculMoyenneGenerale() throws KeyInvalidExeption {
 
         Assertions.assertEquals(groupe.calculerMoyenneGroupe(),((71.5/6)+(85.5/6)+(99.5/6))/3,0.02);
     }
 
-    // test is empty voir formation
 
+    /**
+     * test de la methode de calcul de moyenne general d'un groupe lorsqu'il n'y a aucun etudiant, doit lancer EtudiantNotFoundException
+     * @throws ValueExeption
+     * @throws KeyInvalidExeption
+     */
     @Test
     public void test_calculMoyennePasEtudiants() throws ValueExeption, KeyInvalidExeption {
 

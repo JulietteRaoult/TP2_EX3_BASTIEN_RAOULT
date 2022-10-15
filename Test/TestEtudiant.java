@@ -13,6 +13,12 @@ public class TestEtudiant {
     Etudiant etudiant;
 
 
+    /**
+     * Before each pour tout les tests,
+     * creation d'un formation avec 4 matieres et creation d'un etudiant avec des notes
+     * @throws ValueExeption
+     * @throws KeyInvalidExeption
+     */
     @BeforeEach
     public void preparationTest() throws ValueExeption, KeyInvalidExeption {
         //creation de la formation
@@ -39,6 +45,9 @@ public class TestEtudiant {
         etudiant.ajouterNote("SVT",12);
     }
 
+    /**
+     * test d'ajout de note
+     */
     @Test
     public void Test_ajout(){
         //test
@@ -47,6 +56,10 @@ public class TestEtudiant {
     }
 
 
+    /**
+     * test de la methode calcul moyenne general
+     * @throws KeyInvalidExeption
+     */
     @Test
     public void Test_CalculeMoyenneGeneral() throws KeyInvalidExeption {
         //methode
@@ -54,23 +67,34 @@ public class TestEtudiant {
         Assertions.assertEquals(74.5/6,avg,0.01);
     }
 
-    //!!!!!!!!!!!!!!!!!!!!!!!!!!!! calcul moyenne sans note
+    /**
+     * test exception calcul moyenne mais matiere n'a pas de note
+     */
     @Test
     public void test_calculeMoyenne_MatSansNote(){
         Assertions.assertThrows(NoNoteExeption.class,()->etudiant.calculMoyenneMatiere("EPS"));
     }
 
+    /**
+     * test exception calcul moyenne mais matiere n'existe pas
+     */
     @Test
     public void Test_CalculeMoyenne_keyInvalidExeption(){
         Assertions.assertThrows(KeyInvalidExeption.class,()-> etudiant.calculMoyenneMatiere("math"));
     }
 
+    /**
+     * test exception note invalide
+     */
     @Test
     public void test_CalculeMoyenne_noteNonValide(){
         Assertions.assertThrows(ValueExeption.class,()-> etudiant.ajouterNote("Anglais",-5));
         Assertions.assertThrows(ValueExeption.class,()-> etudiant.ajouterNote("Anglais",25));
     }
 
+    /**
+     * test de la methode toString
+     */
     @Test
     public void test_ToString(){
         Assertions.assertEquals("BASTIEN\n" +
