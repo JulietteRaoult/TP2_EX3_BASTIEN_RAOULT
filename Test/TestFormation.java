@@ -120,7 +120,9 @@ public class TestFormation {
     }
 
     /**
-     *
+     *test que l'instatiation d'une formation se fait correctement
+     *      table des matiere vide a la creation
+     *      ajout corect des amtiere dans cette table
      */
     @Test
     public void test_instanciation_formation(){

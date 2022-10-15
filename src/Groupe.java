@@ -56,7 +56,11 @@ public class Groupe {
     public void triAlpha(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
+            /**
+             * methode permetant de comparer les etudiant par nom  dans l'odre alphabetique pour triAntiAlpha
+             */
             public int compare(Etudiant o1, Etudiant o2) {
+                //reutilisation de la methode compareTo de la classe string
                 return o1.getIdentite().getNom().compareTo(o2.getIdentite().getNom());
             }
         });
@@ -69,7 +73,11 @@ public class Groupe {
     public void triAntiAlpha(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
+            /**
+             * methode permetant de comparer les etudiant par nom inverse de l'odre alphabetique pour triAntiAlpha
+             */
             public int compare(Etudiant o1, Etudiant o2) {
+                //reutilisation de la methode compareTo de la classe string inverser(*-1)
                 return (o1.getIdentite().getNom().compareTo(o2.getIdentite().getNom()))*-1;
             }
         });
@@ -135,14 +143,21 @@ public class Groupe {
     public void triParMerite(){
         this.etudiants.sort(new Comparator<Etudiant>() {
             @Override
+
+            /**
+             * methode permetant de comparer les etudiant par moyenne general pour triMerite
+             */
             public int compare(Etudiant o1, Etudiant o2) {
                 int res = -5000;
                 double moyenneO1 = o1.calculMoyenneGenerale();
                 double moyenne02 = o2.calculMoyenneGenerale();
+                //si o1 = o2
                 if (moyenneO1==moyenne02){
                     res = 0;
+                //si 01 apres o2 par moyenneGeneral
                 }else if (moyenneO1>moyenne02){
                     res = -1;
+                    //si 01 apres o2 par moyenneGeneral
                 }else {
                     res =1;
                 }
